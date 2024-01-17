@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import CarList from '@/views/CarList.vue'
 
 const routes: RouteRecordRaw[] = [
@@ -45,7 +45,7 @@ const router = createRouter({
 })
 
 router.afterEach((to) => {
-  document.title = to.meta.title ?? document.title
+  document.title = to.meta.title ? (to.meta.title as string) : document.title
 })
 
 export default router

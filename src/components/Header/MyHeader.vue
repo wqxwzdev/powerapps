@@ -24,7 +24,7 @@
 const options = [{ label: 'Top', key: 'top' }]
 const options2 = [{ label: '富水 浩通', key: '富水 浩通' }]
 
-function handleSelect(_selKey, selOpt) {
+function handleSelect(_selKey: string, selOpt: any) {
   console.log(selOpt)
 }
 </script>
