@@ -1,0 +1,13 @@
+#app {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  padding: 0;
+  font-weight: normal;
+  /* background: white; */
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  background: #f4f5f8;
+}
