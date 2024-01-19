@@ -22,10 +22,16 @@
 
 <script lang="ts" setup>
 const options = [{ label: 'Top', key: 'top' }]
-const options2 = [{ label: '富水 浩通', key: '富水 浩通' }]
+const options2 = [
+  { label: '富水 浩通', key: '富水 浩通' },
+  { label: '登出', key: '登出' }
+]
 
 function handleSelect(_selKey: string, selOpt: any) {
-  console.log(selOpt)
+  if (_selKey == '登出') {
+    sessionStorage.removeItem('login')
+    location.reload()
+  }
 }
 </script>
 

@@ -1,9 +1,13 @@
 <template>
   <div>
     <div class="px-4 py-3" style="overflow-y: auto">
-      <n-card :header-style="{ padding: '8px 24px' }" :content-style="{ paddingBottom: 0 }">
+      <n-card
+        :header-style="{ padding: '6px 24px' }"
+        :content-style="{ paddingBottom: 0 }"
+        size="small"
+      >
         <template #header>
-          <div class="flex items-center font-size-14px">
+          <div class="flex items-center font-size-13px">
             <i class="i-mdi-magnify font-size-16px" style="color: #3880ff"></i>
             <div>クイック検索</div>
           </div>
@@ -24,8 +28,9 @@
           :model="formModel"
           label-placement="left"
           :disabled="loading"
+          size="small"
         >
-          <n-grid x-gap="12" :cols="4">
+          <n-grid x-gap="12" :cols="6">
             <n-gi>
               <n-form-item label="車両区分" path="item1">
                 <n-select :options="options1" clearable v-model:value="formModel.item1" />
@@ -38,12 +43,20 @@
             </n-gi>
             <n-gi>
               <n-form-item label="店舗/部署" path="item3">
-                <n-select :options="[]" clearable v-model:value="formModel.item3" />
+                <n-select
+                  :options="[{ label: '', value: '' }]"
+                  clearable
+                  v-model:value="formModel.item3"
+                />
               </n-form-item>
             </n-gi>
             <n-gi>
               <n-form-item path="item17">
-                <n-select :options="[]" clearable v-model:value="formModel.item17" />
+                <n-select
+                  :options="[{ label: '', value: '' }]"
+                  clearable
+                  v-model:value="formModel.item17"
+                />
               </n-form-item>
             </n-gi>
             <n-gi>
@@ -53,14 +66,22 @@
             </n-gi>
             <n-gi>
               <n-form-item label="年式" path="item6">
-                <n-select :options="[]" clearable v-model:value="formModel.item6" />
+                <n-select
+                  :options="[{ label: '', value: '' }]"
+                  clearable
+                  v-model:value="formModel.item6"
+                />
               </n-form-item>
             </n-gi>
             <n-gi span="2">
               <n-grid x-gap="12" :cols="5">
                 <n-gi span="2">
                   <n-form-item label="登録番号" path="item5">
-                    <n-select :options="[]" clearable v-model:value="formModel.item5" />
+                    <n-select
+                      :options="[{ label: '', value: '' }]"
+                      clearable
+                      v-model:value="formModel.item5"
+                    />
                   </n-form-item>
                 </n-gi>
                 <n-gi>
@@ -87,17 +108,29 @@
             </n-gi>
             <n-gi>
               <n-form-item label="グレード" path="item8">
-                <n-select clearable :options="[]" v-model:value="formModel.item8" />
+                <n-select
+                  clearable
+                  :options="[{ label: '', value: '' }]"
+                  v-model:value="formModel.item8"
+                />
               </n-form-item>
             </n-gi>
             <n-gi>
               <n-form-item label="外板色" path="item9">
-                <n-select clearable :options="[]" v-model:value="formModel.item9" />
+                <n-select
+                  clearable
+                  :options="[{ label: '', value: '' }]"
+                  v-model:value="formModel.item9"
+                />
               </n-form-item>
             </n-gi>
             <n-gi>
               <n-form-item label="点検" path="item13">
-                <n-select clearable :options="[]" v-model:value="formModel.item13" />
+                <n-select
+                  clearable
+                  :options="[{ label: '', value: '' }]"
+                  v-model:value="formModel.item13"
+                />
               </n-form-item>
             </n-gi>
           </n-grid>
@@ -105,11 +138,11 @@
       </n-card>
       <n-card
         class="mt-4"
-        :header-style="{ padding: '8px 24px' }"
+        :header-style="{ padding: '4px 24px' }"
         :content-style="{ paddingBottom: 0 }"
       >
         <template #header>
-          <div class="flex items-center font-size-14px">
+          <div class="flex items-center font-size-13px">
             <i class="i-mdi-clipboard-text-search-outline" style="color: #3880ff"></i>
             <div class="ml-2px">検索結果</div>
             <p class="font-size-8px ml-1 color-#4a4a4a">
@@ -135,15 +168,18 @@
           </n-space>
         </template>
         <n-divider style="margin-top: 0" />
+        <!-- :style="{ height: tableMaxHeight + 'px' }"
+          flex-height -->
         <n-data-table
           :columns="columns"
           :data="listData"
           :loading="loading"
-          :style="{ height: tableMaxHeight + 'px' }"
-          flex-height
           ref="tableRef"
           :row-props="rowProps"
           :single-line="false"
+          size="small"
+          :min-height="100"
+          :max-height="tableMaxHeight"
         />
         <div class="flex justify-end my-2">
           <n-pagination
@@ -157,6 +193,7 @@
             :on-update:page="didPageNumChange"
             :on-update:page-size="didPageSizeChange"
             :disabled="loading"
+            size="small"
           />
         </div>
       </n-card>
@@ -172,7 +209,7 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const tableMaxHeight = computed(() => {
-  return Math.max(100, window.innerHeight - 460)
+  return Math.max(100, window.innerHeight - 410)
 })
 const initModel = JSON.stringify({
   item1: null,
@@ -198,18 +235,21 @@ const initModel = JSON.stringify({
 })
 const formModel = ref(JSON.parse(initModel))
 const options1 = [
+  { label: '', value: '' },
   { label: 'サービス代車', value: 'サービス代車' },
   { label: '社用車', value: '社用車' },
   { label: '試乗車', value: '試乗車' },
   { label: '試乗車(わ)', value: '試乗車(わ)' }
 ]
 const options2 = [
+  { label: '', value: '' },
   { label: 'サービス代車', value: 'サービス代車' },
   { label: 'レンタカー', value: 'レンタカー' },
   { label: '店長車', value: '店長車' },
   { label: '試乗車', value: '試乗車' }
 ]
 const options4 = [
+  { label: '', value: '' },
   { label: 'カローラダーリングHV', value: 'カローラダーリングHV' },
   { label: 'クラウンHV', value: 'クラウンHV' },
   { label: 'ハイエースバン', value: 'ハイエースバン' },
@@ -217,21 +257,130 @@ const options4 = [
   { label: 'ヤリス', value: 'ヤリス' }
 ]
 const columns: DataTableColumns = [
-  { title: '車両区分', key: 'item1', width: 120 },
-  { title: '用途', key: 'item2', width: 120 },
-  { title: '店舗/部署', key: 'item3', width: 120 },
-  { title: '車名', key: 'item4', width: 120 },
-  { title: '登録番号', key: 'item5', width: 120 },
-  { title: '年式', key: 'item6', width: 120 },
-  { title: '排気量', key: 'item7', width: 120 },
-  { title: 'グレード', key: 'item8', width: 120 },
-  { title: '外板色', key: 'item9', width: 120 },
-  { title: '型式', key: 'item10', width: 120 },
-  { title: 'フレームNO', key: 'item11', width: 120 },
-  { title: '車検満了日', key: 'item12', width: 120 },
-  { title: '点検', key: 'item13', width: 60 },
-  { title: '表示区分', key: 'item14', width: 80 },
-  { title: '減車予定日', key: 'item15', width: 120 }
+  {
+    title: '車両区分',
+    key: 'item1',
+    width: 120,
+    fixed: 'left',
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '用途',
+    key: 'item2',
+    width: 120,
+    fixed: 'left',
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '店舗/部署',
+    key: 'item3',
+    width: 100,
+    fixed: 'left',
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '車名',
+    key: 'item4',
+    width: 140,
+    fixed: 'left',
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '登録番号',
+    key: 'item5',
+    width: 130,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '年式',
+    key: 'item6',
+    width: 100,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '排気量',
+    key: 'item7',
+    width: 80,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: 'グレード',
+    key: 'item8',
+    width: 140,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '外板色',
+    key: 'item9',
+    width: 140,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '型式',
+    key: 'item10',
+    width: 150,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: 'フレームNO',
+    key: 'item11',
+    width: 100,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '車検満了日',
+    key: 'item12',
+    width: 100,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '点検',
+    key: 'item13',
+    width: 60,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '表示区分',
+    key: 'item14',
+    width: 80,
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '減車予定日',
+    key: 'item15',
+    width: 100,
+    ellipsis: {
+      tooltip: true
+    }
+  }
 ]
 
 const formRef = ref()

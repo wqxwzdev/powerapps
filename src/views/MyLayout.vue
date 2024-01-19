@@ -11,12 +11,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-defineOptions({
-  name: 'my-layout'
-})
-</script>
-
 <style lang="scss" scoped>
 .layout {
   display: flex;

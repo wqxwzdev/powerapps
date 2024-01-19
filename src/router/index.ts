@@ -1,9 +1,12 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import MyLayout from '@/views/MyLayout.vue'
 import CarList from '@/views/CarList.vue'
+import { loadingBar } from '@/utils/naiveTool'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
+    component: MyLayout,
     redirect: '/list',
     children: [
       {
@@ -23,6 +26,14 @@ const routes: RouteRecordRaw[] = [
         }
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/Login.vue'),
+    meta: {
+      title: '登録'
+    }
   }
 ]
 
@@ -44,8 +55,22 @@ const router = createRouter({
   }
 })
 
+router.beforeEach((to, from, next) => {
+  loadingBar.start()
+  if (to.path === '/login') {
+    next()
+  } else {
+    if (sessionStorage.getItem('login')) {
+      next()
+    } else {
+      next({ path: '/login' })
+    }
+  }
+})
+
 router.afterEach((to) => {
   document.title = to.meta.title ? (to.meta.title as string) : document.title
+  loadingBar.finish()
 })
 
 export default router

@@ -9,28 +9,52 @@
         label-placement="left"
         bordered
         size="small"
-        label-style="width: 100px"
-        content-style="width: 200px"
+        label-style="width: 120px"
+        content-style="width: 180px"
+        column="4"
       >
-        <n-descriptions-item label="車区分">{{ carDetail.item1 }}</n-descriptions-item>
-        <n-descriptions-item label="用途">{{ carDetail.item2 }}</n-descriptions-item>
-        <n-descriptions-item label="表示区分">{{ carDetail.item14 }}</n-descriptions-item>
-        <n-descriptions-item label="車名">{{ carDetail.item4 }}</n-descriptions-item>
-        <n-descriptions-item label="グレード">{{ carDetail.item8 }}</n-descriptions-item>
-        <n-descriptions-item label="型式">{{ carDetail.item10 }}</n-descriptions-item>
-        <n-descriptions-item label="外板色">{{ carDetail.item9 }}</n-descriptions-item>
-        <n-descriptions-item label="内装色"></n-descriptions-item>
-        <n-descriptions-item label="驅動"></n-descriptions-item>
-        <n-descriptions-item label="登録番号">{{ carDetail.item5 }}</n-descriptions-item>
-        <n-descriptions-item label="フレームNO">{{ carDetail.item11 }}</n-descriptions-item>
-        <n-descriptions-item label="排气量">{{ carDetail.item7 }}</n-descriptions-item>
-        <n-descriptions-item label="登録日"></n-descriptions-item>
-        <n-descriptions-item label="車検満了日">{{ carDetail.item12 }}</n-descriptions-item>
-        <n-descriptions-item label="最新点検入庫日"></n-descriptions-item>
-        <n-descriptions-item label="減車予定日">{{ carDetail.item15 }}</n-descriptions-item>
-        <n-descriptions-item label="減車日"></n-descriptions-item>
-        <n-descriptions-item label=""></n-descriptions-item>
-        <n-descriptions-item label="メモ" span="3"></n-descriptions-item>
+        <n-descriptions-item label="車区分"
+          ><n-ellipsis>{{ carDetail.item1 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="用途"
+          ><n-ellipsis>{{ carDetail.item2 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="表示区分"
+          ><n-ellipsis>{{ carDetail.item14 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="車名"
+          ><n-ellipsis>{{ carDetail.item4 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="グレード"
+          ><n-ellipsis>{{ carDetail.item8 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="型式"
+          ><n-ellipsis>{{ carDetail.item10 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="外板色"
+          ><n-ellipsis>{{ carDetail.item9 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="内装色"><n-ellipsis></n-ellipsis></n-descriptions-item>
+        <n-descriptions-item label="驅動"><n-ellipsis></n-ellipsis></n-descriptions-item>
+        <n-descriptions-item label="登録番号"
+          ><n-ellipsis>{{ carDetail.item5 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="フレームNO"
+          ><n-ellipsis>{{ carDetail.item11 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="排气量"
+          ><n-ellipsis>{{ carDetail.item7 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="登録日"><n-ellipsis></n-ellipsis></n-descriptions-item>
+        <n-descriptions-item label="車検満了日"
+          ><n-ellipsis>{{ carDetail.item12 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="最新点検入庫日"><n-ellipsis></n-ellipsis></n-descriptions-item>
+        <n-descriptions-item label="減車予定日"
+          ><n-ellipsis>{{ carDetail.item15 }}</n-ellipsis></n-descriptions-item
+        >
+        <n-descriptions-item label="減車日"><n-ellipsis></n-ellipsis></n-descriptions-item>
+        <n-descriptions-item label="メモ" span="4"><n-ellipsis></n-ellipsis></n-descriptions-item>
       </n-descriptions>
     </n-card>
     <div class="m-2"></div>
@@ -45,6 +69,7 @@
         ref="tableRef"
         max-height="200px"
         :single-line="false"
+        size="small"
       />
     </n-card>
     <div class="m-2"></div>
@@ -97,9 +122,14 @@
         ref="tableRef2"
         max-height="200px"
         :single-line="false"
+        size="small"
       />
     </n-card>
-    <div class="flex justify-center mt-4">
+    <div class="h-50px"></div>
+    <div
+      class="flex justify-center mt-4 bg-white p-2"
+      style="position: fixed; width: 100%; bottom: 0; left: 0"
+    >
       <n-space>
         <n-button type="primary">予約</n-button>
         <!-- <n-button>更新</n-button> -->
@@ -150,8 +180,20 @@ const carDetail = ref<Record<string, any>>({
 const router = useRouter()
 
 const columns: DataTableColumns = [
-  { title: '品番', key: 'no' },
-  { title: '名称', key: 'name' }
+  {
+    title: '品番',
+    key: 'no',
+    ellipsis: {
+      tooltip: true
+    }
+  },
+  {
+    title: '名称',
+    key: 'name',
+    ellipsis: {
+      tooltip: true
+    }
+  }
 ]
 
 const columns2: DataTableColumns = [

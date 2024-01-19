@@ -7,9 +7,6 @@ const themeOverrides: GlobalThemeOverrides = {
     primaryColorHover: '#4c8dff',
     primaryColorPressed: '#4c8dff'
   },
-  LoadingBar: {
-    colorLoading: '#3880ff'
-  },
   Layout: {
     colorEmbedded: '#f5f7f9'
   }
@@ -23,7 +20,7 @@ const themeOverrides: GlobalThemeOverrides = {
     :theme="lightTheme"
     :theme-overrides="themeOverrides"
   >
-    <layout></layout>
+    <router-view />
   </n-config-provider>
 </template>
 
