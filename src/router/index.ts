@@ -34,6 +34,14 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: '登録'
     }
+  },
+  {
+    path: '/msLogin',
+    name: 'MsLogin',
+    component: () => import('@/views/MsLogin.vue'),
+    meta: {
+      title: '微软登録'
+    }
   }
 ]
 

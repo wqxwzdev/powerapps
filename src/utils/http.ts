@@ -24,9 +24,13 @@ export class HttpServer {
     service.interceptors.request.use(
       function (config: InternalAxiosRequestConfig) {
         const token = getToken()
-        if (token) {
+        if (sessionStorage.getItem('login')) {
           const headers = Object.assign({}, config.headers)
-          headers['Authorization'] = 'bearer ' + token
+          // headers['Authorization'] = 'bearer ' + token
+          headers['Authorization'] =
+            'Basic d2hpemVuOjJlZTE4MzhhLTc3MTItNDkwYy1iYmNjLTE3MjFjNTYyYWFiOA=='
+          headers['X-ZUMO-AUTH'] =
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGFibGVfc2lkIjoic2lkOjMxMmM2M2Q5NWYzOTg2ZTMzMDhjZTU4MjE2MGRjMmVlIiwic3ViIjoic2lkOjVlYzIwYjk0YjYxNzQ2M2ExYzE0ZjM4YjJmYWI1YzY4IiwiaWRwIjoiYWFkIiwidmVyIjoiMyIsIm5iZiI6MTcwNTkwMzM2MywiZXhwIjoxNzA1OTA3MjU2LCJpYXQiOjE3MDU5MDMzNjMsImlzcyI6Imh0dHBzOi8vZGVtby1mb3ItaW9uaWMuYXp1cmV3ZWJzaXRlcy5uZXQvIiwiYXVkIjoiaHR0cHM6Ly9kZW1vLWZvci1pb25pYy5henVyZXdlYnNpdGVzLm5ldC8ifQ.I8tpEs4_Vowo8X3Yo1E57-hT44_axey4DsfCroUkJT4'
           config.headers = headers
         }
         return config

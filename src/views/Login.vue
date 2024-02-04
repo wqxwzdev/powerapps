@@ -27,6 +27,9 @@
         <n-form-item>
           <n-button type="primary" block @click="doLogin"> 登入 </n-button>
         </n-form-item>
+        <!-- <n-form-item>
+          <n-button @click="msLogin">微软登录</n-button>
+        </n-form-item> -->
       </n-form>
     </div>
   </div>
@@ -37,7 +40,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { message } from '@/utils/naiveTool'
 
-const formModel = ref({ account: 'admin', password: '456123' })
+const formModel = ref({ account: '', password: '' })
 const router = useRouter()
 
 function doLogin() {
@@ -48,6 +51,12 @@ function doLogin() {
   } else {
     message.error('用户名或密码错误！')
   }
+}
+
+function msLogin() {
+  const rediretUrl = `${location.protocol}//${location.host}/msLogin`
+  window.location.href =
+    'https://demo-for-ionic.azurewebsites.net/.auth/login/aad?post_login_redirect_uri=' + rediretUrl
 }
 </script>
 
