@@ -5,7 +5,7 @@
   "routes": [
     {
       "route": "/*",
-      "allowedRoles": [ "admin", "reader" ]
+      "allowedRoles": [ "authenticated" ]
     }
   ],
   "responseOverrides": {
